@@ -34,10 +34,15 @@ BindText (nickName,nameof (_scoreItemViewModel.ItemNick),()=>_scoreItemViewModel
 
 ## 参考
 [数据绑定和 MVVM](https://learn.microsoft.com/zh-cn/dotnet/maui/xaml/fundamentals/mvvm?view=net-maui-8.0)
+
 [Model-View-ViewModel (MVVM)](https://learn.microsoft.com/en-us/dotnet/architecture/maui/mvvm)
+
 [Input Field](https://docs.unity3d.com/Packages/com.unity.ugui@3.0/manual/script-InputField.html#events)
+
 [INotifyPropertyChanged](https://learn.microsoft.com/zh-cn/dotnet/api/system.componentmodel.inotifypropertychanged?view=netstandard-2.1#events)
+
 [PropertyChangedEventHandler 委托](https://learn.microsoft.com/zh-cn/dotnet/api/system.componentmodel.propertychangedeventhandler?view=netstandard-2.1)
+
 [GPTchat: 属性的引用]()
 
 
