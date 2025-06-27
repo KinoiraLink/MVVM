@@ -1,5 +1,7 @@
+using System;
 using MVVM;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using ViewModel;
 
@@ -14,7 +16,7 @@ namespace View
 
         private ScoreItem _scoreItem;
         private ScoreItemViewModel _scoreItemViewModel;
-    
+
         private void Awake()
         {
             _scoreItem = new ScoreItem()
@@ -25,10 +27,30 @@ namespace View
             };
             _scoreItemViewModel = new ScoreItemViewModel(_scoreItem);
             InitViewModel(_scoreItemViewModel);
-            BindText(nickName,nameof(_scoreItemViewModel.ItemNick),()=>_scoreItemViewModel.ItemNick);
-            BindText(score,nameof(_scoreItemViewModel.ItemScore),()=>_scoreItemViewModel.ItemScore.ToString());
-            inputNick.onSubmit.AddListener(_scoreItemViewModel.ChangeName);
-            btnChange.onClick.AddListener(_scoreItemViewModel.AddItemScore);
+            //BindText(nickName,nameof(_scoreItemViewModel.ItemNick));
+            //DataBind<string>((x) => nickName.text = x, nameof(_scoreItemViewModel.ItemNick));
+            DataBind<string, string>(
+                (x) => nickName.text = x,
+                nameof(_scoreItemViewModel.ItemNick),
+                inputNick.onSubmit,
+                (x) => _scoreItemViewModel.ChangeName(x)
+            );
+            //BindText(score,nameof(_scoreItemViewModel.ItemScore),()=>_scoreItemViewModel.ItemScore.ToString());
+            //DataBind<int>((x) => score.text = x.ToString(), nameof(_scoreItemViewModel.ItemScore));
+            DataBind<int>(
+                (x) => score.text = x.ToString(),
+                nameof(_scoreItemViewModel.ItemScore),
+                btnChange.onClick,
+                _scoreItemViewModel.AddItemScore
+            );
         }
+
+        private void OnDestroy()
+        {
+            Dispose();
+        }
+
     }
+
+
 }
